@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cây quyết định điều trị — Ung thư dạ dày &amp; thực quản</title>
+<meta name="description" content="Cây quyết định điều trị ung thư dạ dày và ung thư thực quản, bám chuẩn NCCN v4.2024.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#FAF9FD;
+  --surface:#FFFFFF;
+  --surface-2:#F3F1F9;
+  --surface-3:#E9E5F4;
+  --ink:#1E1A2B;
+  --ink-2:#55506B;
+  --ink-3:#847EA0;
+  --line:#E2DDF0;
+  --line-2:#C9C1E2;
+
+  --purple:#6C5CA8;
+  --purple-deep:#4C3F80;
+  --purple-soft:#F1EDFA;
+  
+
+  --teal:#2E8B7F;
+  --teal-soft:#E2F2EF;
+
+  --amber:#A8741C;
+  --amber-soft:#FBF2DF;
+
+  --rose:#A8463F;
+  --rose-soft:#FAEAE8;
+
+  --shadow:0 1px 2px rgba(76,63,128,.06), 0 12px 28px -20px rgba(76,63,128,.45);
+  --ring:0 0 0 1px var(--purple);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#120F1A; --surface:#1A1626; --surface-2:#221D31; --surface-3:#2C2540;
+    --ink:#EDE9F7; --ink-2:#B3ACC9; --ink-3:#847EA0;
+    --line:#2E2740; --line-2:#443A5E;
+    --purple:#A795E0; --purple-deep:#C9BCF2; --purple-soft:#241D38;
+    --teal:#5FC0B2; --teal-soft:#13302C;
+    --amber:#D9A55A; --amber-soft:#30260F;
+    --rose:#E09089; --rose-soft:#32191A;
+    --shadow:0 1px 2px rgba(0,0,0,.55), 0 14px 32px -22px rgba(0,0,0,.95);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#120F1A; --surface:#1A1626; --surface-2:#221D31; --surface-3:#2C2540;
+  --ink:#EDE9F7; --ink-2:#B3ACC9; --ink-3:#847EA0;
+  --line:#2E2740; --line-2:#443A5E;
+  --purple:#A795E0; --purple-deep:#C9BCF2; --purple-soft:#241D38;
+  --teal:#5FC0B2; --teal-soft:#13302C;
+  --amber:#D9A55A; --amber-soft:#30260F;
+  --rose:#E09089; --rose-soft:#32191A;
+  --shadow:0 1px 2px rgba(0,0,0,.55), 0 14px 32px -22px rgba(0,0,0,.95);
+}
+*{box-sizing:border-box}
+html,body{padding:0; margin:0}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:"Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size:15px; line-height:1.58; -webkit-font-smoothing:antialiased;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+h1,h2,h3,h4{margin:0; text-wrap:balance; font-weight:600}
+ul{margin:0}
+button{font:inherit; color:inherit}
+img{max-width:100%}
+[hidden]{display:none!important}
+.mono{font-family:"IBM Plex Mono", ui-monospace, Menlo, monospace; font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--purple); outline-offset:2px; border-radius:6px}
+
+/* ---------- header ---------- */
+header.top{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:40;
+  background:color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter:blur(12px); border-bottom:1px solid var(--line);
+}
+.top-in{max-width:940px; margin:0 auto; padding:11px 16px; display:flex; gap:12px; align-items:center}
+.mark{
+  width:28px; height:28px; border-radius:9px; flex:0 0 auto;
+  background:linear-gradient(140deg, var(--purple), var(--teal));
+  display:grid; place-items:center; color:#fff; font-size:14px; font-weight:700;
+}
+.brand{min-width:0}
+.brand b{display:block; font-size:15.5px; font-weight:600; letter-spacing:-.01em; line-height:1.25}
+.brand span{display:block; font-size:11px; color:var(--ink-3); letter-spacing:.08em; text-transform:uppercase}
+.spacer{flex:1}
+.icon-btn{
+  border:1px solid var(--line); background:var(--surface); border-radius:999px;
+  width:34px; height:34px; cursor:pointer; display:grid; place-items:center; flex:0 0 auto;
+}
+.icon-btn:hover{border-color:var(--purple)}
+
+/* ---------- layout ---------- */
+.wrap{max-width:940px; margin:0 auto; padding-inline:16px; padding-block:0 72px}
+.panel{background:var(--surface); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow)}
+.pad{padding:18px}
+.eyebrow{font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--purple); font-weight:700}
+.muted{color:var(--ink-2)}
+.small{font-size:13px}
+.row{display:flex; gap:9px; flex-wrap:wrap; align-items:center}
+
+.hero h1{font-size:23px; letter-spacing:-.02em; margin:6px 0 6px}
+.hero p{margin:0; color:var(--ink-2); font-size:14.5px; max-width:62ch}
+.legend{display:flex; gap:14px; flex-wrap:wrap; margin-top:14px; font-size:12.5px; color:var(--ink-2)}
+.legend i{display:inline-block; width:9px; height:9px; border-radius:3px; margin-right:6px; vertical-align:-1px}
+
+/* ---------- controls ---------- */
+.ctl{display:flex; gap:8px; flex-wrap:wrap}
+.btn{
+  border:1px solid var(--line-2); background:var(--surface); padding:7px 14px;
+  border-radius:9px; cursor:pointer; font-size:13.5px; font-weight:500;
+}
+.btn:hover{border-color:var(--purple); color:var(--purple)}
+.btn.primary{background:var(--purple); border-color:var(--purple); color:#fff}
+.btn.primary:hover{filter:brightness(1.08); color:#fff}
+
+.crumbs{display:flex; gap:5px; flex-wrap:wrap; align-items:center; margin-top:10px}
+.crumbs .cb{
+  background:var(--purple-soft); border:1px solid var(--line); color:var(--purple);
+  padding:3px 11px; border-radius:999px; font-size:12.5px; cursor:pointer; font-weight:500;
+}
+.crumbs .cb:hover{border-color:var(--purple)}
+.crumbs .sep{color:var(--ink-3); font-size:12px}
+
+/* ---------- tree ---------- */
+.rootcard{
+  display:flex; gap:11px; align-items:center;
+  background:var(--surface-2); border:1px solid var(--line);
+  border-radius:11px; padding:12px 14px; font-weight:600; font-size:15px;
+}
+.rootcard .dot{width:20px; height:20px; border-radius:50%; background:var(--purple); flex:0 0 auto}
+
+.kids{position:relative; margin-left:14px; padding-left:21px; display:flex; flex-direction:column; gap:8px; margin-top:8px}
+.kids::before{content:""; position:absolute; left:0; top:-4px; bottom:16px; width:2px; background:var(--line-2); border-radius:2px}
+.nodewrap{position:relative}
+.kids > .nodewrap::before{content:""; position:absolute; left:-21px; top:22px; width:17px; height:2px; background:var(--line-2); border-radius:2px}
+
+.node{
+  width:100%; display:flex; gap:11px; align-items:flex-start; text-align:left;
+  border:1px solid var(--line); background:var(--surface); border-radius:11px;
+  padding:11px 13px; cursor:pointer; line-height:1.45;
+}
+.node:hover{border-color:var(--purple); background:var(--purple-soft)}
+.node .tw{
+  flex:0 0 auto; width:21px; height:21px; border-radius:7px; display:grid; place-items:center;
+  background:var(--surface-2); border:1px solid var(--line); font-size:10px; color:var(--purple);
+  transition:transform .18s ease; margin-top:1px;
+}
+.node[aria-expanded="true"] .tw{transform:rotate(90deg)}
+.node.leaf .tw{border-style:dashed; background:transparent}
+.node .lbl{flex:1 1 auto; min-width:0; font-size:14.5px; font-weight:500}
+.node .tag{flex:0 0 auto; font-size:10.5px; font-weight:600; padding:2px 9px; border-radius:999px; white-space:nowrap; margin-top:2px}
+.node.sel{border-color:var(--purple); background:var(--purple-soft); box-shadow:var(--ring)}
+
+.tg-p{background:var(--purple-soft); color:var(--purple)}
+.tg-t{background:var(--teal-soft); color:var(--teal)}
+.tg-a{background:var(--amber-soft); color:var(--amber)}
+.tg-r{background:var(--rose-soft); color:var(--rose)}
+
+.note{margin:8px 0 0 32px; font-size:13.2px; color:var(--ink-2); border-left:2px solid var(--line-2); padding:2px 0 2px 12px}
+
+.box{margin:9px 0 0 32px; border-radius:11px; padding:12px 15px; border:1px solid}
+.box h4{font-size:12.5px; letter-spacing:.02em; margin-bottom:7px; display:flex; gap:7px; align-items:center}
+.box ul{padding-left:18px; display:flex; flex-direction:column; gap:5px; font-size:13.5px; line-height:1.55}
+.box.risk{border-color:var(--amber); background:var(--amber-soft)}
+.box.risk h4{color:var(--amber)}
+.box.ev{border-color:var(--line-2); background:var(--surface-2)}
+.box.ev h4{color:var(--ink-2)}
+
+.rec{margin:10px 0 0 32px; border:1px solid var(--purple); background:var(--purple-soft); border-radius:12px; padding:14px 16px}
+.rec .lv{
+  display:inline-block; font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase;
+  background:var(--purple); color:#fff; padding:3px 10px; border-radius:999px; margin-bottom:8px;
+}
+.rec .lv.t{background:var(--teal)}
+.rec .lv.a{background:var(--amber)}
+.rec .lv.r{background:var(--rose)}
+.rec h4{font-size:16px; color:var(--purple-deep); margin-bottom:9px}
+.rec ul{padding-left:19px; display:flex; flex-direction:column; gap:7px; font-size:14px; line-height:1.56}
+.rec .cav{margin-top:12px; padding-top:10px; border-top:1px dashed var(--line-2); font-size:13.2px; color:var(--ink-2)}
+.rec .cav b{color:var(--ink)}
+
+.srcline{margin-top:16px; padding-top:12px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink-3)}
+footer{margin-top:30px; padding-top:16px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink-3); line-height:1.6}
+
+@media (max-width:640px){
+  .kids{margin-left:6px; padding-left:15px}
+  .kids > .nodewrap::before{left:-15px; width:11px}
+  .note,.rec,.box{margin-left:9px}
+  .brand span{display:none}
+  .hero h1{font-size:20px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{
+  header.top,.ctl,.crumbs{display:none}
+  .panel{box-shadow:none; break-inside:avoid}
+  .node{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <div class="mark" aria-hidden="true">⌁</div>
+    <div class="brand">
+      <b>Cây quyết định điều trị</b>
+      <span>Ung thư dạ dày &amp; thực quản · NCCN v4.2024</span>
+    </div>
+    <div class="spacer"></div>
+    <button class="icon-btn" id="themeBtn" aria-label="Đổi giao diện sáng tối" title="Đổi giao diện sáng / tối">◐</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="panel pad hero" style="margin-top:18px">
+    <div class="eyebrow">Hướng dẫn sử dụng</div>
+    <h1>Bấm từng nhánh để bung lựa chọn tiếp theo</h1>
+    <p>
+      Hai nhánh gốc là <b>ung thư dạ dày</b> và <b>ung thư thực quản – chỗ nối dạ dày thực quản</b>.
+      Mỗi lần chọn một nhánh, các nhánh anh em thu lại để đường đi luôn rõ. Bấm lại nhánh đang mở để lùi một bậc.
+      Nhánh cuối hiện khuyến cáo kèm liều và <b>mức bằng chứng NCCN</b>.
+    </p>
+    <div class="legend">
+      <span><i style="background:var(--purple)"></i>Mức 1 — bằng chứng cao, đồng thuận toàn thể</span>
+      <span><i style="background:var(--teal)"></i>Mức 2A — mặc định của NCCN</span>
+      <span><i style="background:var(--amber)"></i>Mức 2B — đồng thuận đa số</span>
+      <span><i style="background:var(--rose)"></i>Giảm nhẹ / không còn chỉ định triệt căn</span>
+    </div>
+    <div class="ctl" style="margin-top:16px">
+      <button class="btn primary" id="btnReset">Thu gọn về gốc</button>
+      <button class="btn" id="btnAll">Mở toàn bộ cây</button>
+      <button class="btn" id="btnPrint">In / lưu PDF</button>
+    </div>
+  </section>
+
+  <section class="panel pad" style="margin-top:14px">
+    <div class="crumbs" id="crumbs"></div>
+    <div id="tree" style="margin-top:12px"></div>
+    <div class="srcline">
+      Mọi khuyến cáo là <b>mức 2A</b> trừ khi ghi rõ khác — theo quy ước của NCCN.
+      Nguồn chính: NCCN Clinical Practice Guidelines in Oncology — Gastric Cancer v4.2024 và
+      Esophageal and Esophagogastric Junction Cancers v4.2024. Các điểm bổ sung từ ESMO CPG và
+      Hướng dẫn Bộ Y tế (QĐ 3127/QĐ-BYT, 2020) đều được ghi rõ nguồn ngay tại chỗ.
+    </div>
+  </section>
+
+  <footer>
+    Công cụ hỗ trợ tư duy lâm sàng, không thay thế hội chẩn đa chuyên khoa và không thay thế bản gốc của hướng dẫn.
+    Hướng dẫn điều trị thay đổi nhanh — luôn đối chiếu phiên bản mới nhất trước khi ra quyết định.
+  </footer>
+</div>
+<script>
+/* =======================================================================
+   CÂY QUYẾT ĐỊNH ĐIỀU TRỊ — UNG THƯ DẠ DÀY & THỰC QUẢN
+   Nguồn chính: NCCN Gastric v4.2024 · NCCN Esophageal and EGJ Cancers v4.2024
+   Quy ước NCCN: mọi khuyến cáo là mức 2A trừ khi ghi rõ khác.
+   ======================================================================= */
+
+const TREE = {
+label:"Chọn bệnh lý",
+note:"Phác đồ điều trị toàn thân cho <b>ung thư biểu mô tuyến</b> thực quản, chỗ nối dạ dày – thực quản (EGJ) và dạ dày ở giai đoạn tiến xa <b>có thể dùng thay thế lẫn nhau</b> (NCCN). Ung thư biểu mô vảy thực quản có phác đồ riêng.",
+children:[
+
+/* =====================================================================
+   ============================ DẠ DÀY =================================
+   ===================================================================== */
+{label:"UNG THƯ DẠ DÀY", tag:"Dạ dày", tagc:"p",
+ note:"Trước mọi quyết định: xét nghiệm <b>MSI bằng PCR/NGS hoặc MMR bằng hoá mô miễn dịch cho MỌI bệnh nhân mới chẩn đoán</b>; HER2 và PD-L1 khi bệnh tiến xa hoặc di căn; cân nhắc NGS. Nội soi ổ bụng kèm tế bào dịch rửa chỉ định <b>từ cT1b trở lên</b> khi cân nhắc phẫu thuật hoặc hoá xạ trị.",
+ children:[
+
+ /* ---------- 1. Điều trị ban đầu ---------- */
+ {label:"Chưa điều trị — chọn theo giai đoạn lâm sàng", tag:"GAST-2", tagc:"p",
+  children:[
+   {label:"cTis hoặc cT1a", tag:"Rất sớm", tagc:"t",
+    children:[
+     {label:"Bệnh nhân đủ sức khoẻ phẫu thuật", tag:"Mổ được", tagc:"t",
+      rec:{lvl:"2A", lvc:"t", title:"Cắt u qua nội soi (ER) HOẶC phẫu thuật",
+       li:["NCCN đặt <b>hai lựa chọn ngang nhau</b> cho cTis/cT1a ở bệnh nhân đủ sức khoẻ mổ: <b>cắt u qua nội soi</b> hoặc <b>phẫu thuật</b>.",
+           "Cắt u qua nội soi là phương pháp chính xác nhất để phân biệt T1a với T1b và có thể đồng thời là điều trị triệt căn.",
+           "Sau cắt nội soi: theo dõi nội soi. Sau phẫu thuật: xử trí theo nhánh “Sau phẫu thuật — chưa điều trị trước mổ”."]}},
+     {label:"Không phải ứng viên phẫu thuật", tag:"Không mổ được", tagc:"a",
+      rec:{lvl:"2A", lvc:"t", title:"Cắt u qua nội soi (ER), sau đó theo dõi nội soi",
+       li:["Bao gồm bệnh nhân không chịu được phẫu thuật lớn và bệnh nhân đủ sức khoẻ nhưng từ chối mổ."]}}]},
+
+   {label:"cT1b", tag:"GĐ IA–IB", tagc:"t",
+    rec:{lvl:"2A", lvc:"t", title:"Phẫu thuật",
+     li:["NCCN: cT1b → phẫu thuật.",
+         "Mức nạo hạch theo Hướng dẫn Bộ Y tế / JGCA: <b>D1</b> cho cT1bN0 thể biệt hoá, u &lt;1,5 cm; <b>D1+</b> cho các trường hợp cT1N0 còn lại; <b>D2</b> nếu cT1N(+).",
+         "Sau mổ xử trí theo nhánh “Sau phẫu thuật — chưa điều trị trước mổ”."],
+     cav:"Mức nạo hạch chi tiết là của Hướng dẫn Bộ Y tế và JGCA; NCCN chỉ ghi “Phẫu thuật” và dẫn chiếu Principles of Surgery."}},
+
+   {label:"cT2 trở lên, N bất kỳ — còn mổ được", tag:"cT2–T4a", tagc:"a",
+    note:"NCCN đặt <b>bốn lựa chọn</b> cạnh nhau ở bậc này. Chọn một để xem chi tiết.",
+    children:[
+     {label:"Hoá trị chu phẫu", tag:"MỨC 1", tagc:"p",
+      rec:{lvl:"Mức 1", title:"Hoá trị chu phẫu rồi phẫu thuật — lựa chọn có bằng chứng cao nhất",
+       li:["<b>FLOT</b>: docetaxel 50 mg/m² + oxaliplatin 85 mg/m² + leucovorin 200 mg/m² + 5-FU 2600 mg/m² truyền 24 giờ, <b>mỗi 14 ngày — 4 chu kỳ trước mổ + 4 chu kỳ sau mổ</b>.",
+           "<b>Fluoropyrimidin + oxaliplatin</b> (FOLFOX hoặc CAPOX), 4 chu kỳ trước + 4 sau mổ — cũng thuộc nhóm ưu tiên.",
+           "Lựa chọn khác được khuyến cáo: <b>5-FU + cisplatin</b> (mức 1), 4 chu kỳ trước + 4 sau.",
+           "Đánh giá đáp ứng <b>5–8 tuần</b> sau khi kết thúc điều trị tiền phẫu: CT ngực/bụng/chậu, PET/CT khi có chỉ định, nội soi.",
+           "Phẫu thuật: cắt dạ dày + nạo hạch D2, <b>lấy tối thiểu 15 hạch</b> để xếp giai đoạn tin cậy."],
+       cav:"FLOT4: trung vị sống thêm toàn bộ 50 tháng so với 35 tháng của ECF/ECX — FLOT đã thay thế ECF làm chuẩn mực."}},
+     {label:"Phẫu thuật trước", tag:"2A", tagc:"t",
+      rec:{lvl:"2A", lvc:"t", title:"Phẫu thuật là điều trị ban đầu",
+       li:["NCCN (chú thích o): phẫu thuật là điều trị ban đầu phù hợp cho <b>ung thư ≥T1b</b>, <b>ung thư đang chảy máu hoạt động</b>, hoặc <b>khi ưu tiên điều trị bổ trợ sau mổ</b>.",
+           "Sau mổ xử trí theo nhánh “Sau phẫu thuật — chưa điều trị trước mổ”."],
+       cav:"Đây là lựa chọn hợp lệ của NCCN, không phải sai sót — hữu ích ở cơ sở không sẵn hoá trị chu phẫu hoặc bệnh nhân có biến chứng cần mổ sớm."}},
+     {label:"Hoá xạ trị tiền phẫu", tag:"2B", tagc:"a",
+      rec:{lvl:"2B", lvc:"a", title:"Hoá xạ trị trước mổ",
+       li:["NCCN xếp <b>mức 2B</b> cho ung thư dạ dày (khác với ung thư thực quản, nơi hoá xạ tiền phẫu là mức 1).",
+           "Phác đồ: paclitaxel + carboplatin (2B); 5-FU + oxaliplatin (2B); 5-FU + cisplatin (2B); fluoropyrimidin đơn thuần (2B).",
+           "Liều xạ: <b>45–50,4 Gy, 1,8 Gy mỗi buổi, 25–28 buổi</b>."]}},
+     {label:"U MSI-H / dMMR — cân nhắc thuốc miễn dịch chu phẫu", tag:"Chọn lọc", tagc:"p",
+      ev:{t:"Vì sao NCCN tách riêng nhóm này",
+       li:["NCCN (chú thích r): ở bệnh nhân có u MSI-H/dMMR, <b>miễn dịch chu phẫu hoặc phẫu thuật đơn thuần</b> nên được cân nhắc sau khi tham vấn nhóm đa chuyên khoa.",
+           "NCCN (chú thích s): vai trò của phẫu thuật sau khi đạt đáp ứng hoàn toàn trên hình ảnh/chuyển hoá và sinh thiết với miễn dịch tân bổ trợ <b>hiện chưa rõ ràng</b> — phải thảo luận kỹ, không tự bỏ phẫu thuật."]},
+      rec:{lvl:"2A", lvc:"t", title:"Ba phác đồ miễn dịch được NCCN liệt kê",
+       li:["<b>Nivolumab + ipilimumab → nivolumab</b>: nivolumab 240 mg mỗi 2 tuần + ipilimumab 1 mg/kg mỗi 6 tuần, trước mổ ít nhất 12 tuần → phẫu thuật → nivolumab 480 mg mỗi 4 tuần × 9 chu kỳ.",
+           "<b>Pembrolizumab</b> 200 mg mỗi 3 tuần, ít nhất 12 tuần trước mổ → phẫu thuật → 200 mg mỗi 3 tuần × 16 chu kỳ.",
+           "<b>Tremelimumab + durvalumab</b> — <i>chỉ dùng tân bổ trợ</i>: tremelimumab 300 mg ngày 1 + durvalumab 1500 mg ngày 1, 29, 57, trong 12 tuần trước mổ, một chu kỳ duy nhất."]}}]},
+
+   {label:"Bệnh tại vùng nhưng KHÔNG mổ được về kỹ thuật", tag:"Không mổ được", tagc:"r",
+    rec:{lvl:"2A", lvc:"t", title:"Hoá xạ trị HOẶC điều trị toàn thân",
+     li:["<b>Hoá xạ trị</b>: fluoropyrimidin + oxaliplatin + xạ, hoặc 5-FU + cisplatin + xạ (nhóm ưu tiên); paclitaxel + fluoropyrimidin + xạ (2B).",
+         "Liều xạ 45–50,4 Gy, 1,8 Gy mỗi buổi.",
+         "Hoặc <b>điều trị toàn thân</b> theo dấu ấn sinh học.",
+         "Đánh giá lại sau điều trị: nếu chuyển thành mổ được và bệnh nhân đủ điều kiện → phẫu thuật; nếu không → tiếp tục toàn thân hoặc chuyển giảm nhẹ."]}},
+
+   {label:"Giai đoạn IV (cM1, bao gồm tế bào dịch rửa dương tính)", tag:"GĐ IV", tagc:"r",
+    rec:{lvl:"—", lvc:"r", title:"Chuyển sang nhánh bệnh tiến xa – di căn",
+     li:["Tế bào dịch rửa ổ bụng dương tính (CY+) được xếp là <b>M1</b> theo AJCC lần 8.",
+         "Làm HER2, PD-L1 CPS và xét nghiệm vi vệ tinh nếu chưa có; cân nhắc NGS.",
+         "Nếu <b>phúc mạc là tổn thương duy nhất</b> → xem nhánh riêng “Di căn phúc mạc đơn độc”."]}}]},
+
+ /* ---------- 2. Sau mổ, chưa điều trị trước ---------- */
+ {label:"Sau phẫu thuật — CHƯA điều trị trước mổ", tag:"GAST-4", tagc:"p",
+  note:"Phân nhánh đầu tiên luôn là diện cắt. <b>R0</b> = không còn ung thư ở diện cắt · <b>R1</b> = còn vi thể · <b>R2</b> = còn đại thể hoặc M1.",
+  children:[
+   {label:"R0 — diện cắt sạch", tag:"R0", tagc:"t",
+    children:[
+     {label:"pTis hoặc pT1, N0", tag:"GĐ 0–IA", tagc:"t",
+      rec:{lvl:"2A", lvc:"t", title:"Theo dõi",
+       li:["Không điều trị bổ trợ.",
+           "Theo dõi: khám + xét nghiệm mỗi 3–6 tháng trong 1–2 năm, mỗi 6–12 tháng trong năm 3–5.",
+           "Nội soi và CT theo chỉ định lâm sàng. Nếu cắt toàn bộ dạ dày: theo dõi và bổ sung vitamin B12, sắt, kẽm, calci, vitamin D suốt đời."]}},
+     {label:"pT2, N0", tag:"GĐ IB", tagc:"a",
+      note:"NCCN cho hai lựa chọn; lựa chọn thứ hai dành cho <b>bệnh nhân chọn lọc</b> có yếu tố nguy cơ cao.",
+      children:[
+       {label:"Không có yếu tố nguy cơ cao", tag:"Nguy cơ thấp", tagc:"t",
+        rec:{lvl:"2A", lvc:"t", title:"Theo dõi", li:["Nguy cơ tái phát thấp — không điều trị bổ trợ."]}},
+       {label:"Có yếu tố nguy cơ cao", tag:"Nguy cơ cao", tagc:"a",
+        risk:{t:"Yếu tố nguy cơ cao ở pT2N0 — NCCN GAST-4, chú thích aa",
+         li:["Mô học <b>kém biệt hoá</b> hoặc độ mô học cao",
+             "<b>Xâm lấn mạch bạch huyết</b> (lymphovascular invasion)",
+             "<b>Xâm lấn thần kinh</b> (neural invasion)",
+             "Tuổi <b>dưới 50</b>",
+             "Bệnh nhân <b>không được nạo hạch D2</b>"]},
+        rec:{lvl:"2A", lvc:"t", title:"Fluoropyrimidin → hoá xạ trị nền fluoropyrimidin → fluoropyrimidin",
+         li:["Liều xạ: <b>45–50,4 Gy, 1,8 Gy mỗi buổi, 25–28 buổi</b>.",
+             "<b>Phác đồ 5-FU</b>: 2 chu kỳ trước + 4 chu kỳ sau hoá xạ (leucovorin 400 + 5-FU 400 mg/m² bolus + 5-FU 1200 mg/m²/24 giờ × 2 ngày, mỗi 14 ngày); các chu kỳ sau bắt đầu 1 tháng sau khi kết thúc hoá xạ. Trong khi xạ: 5-FU 200–250 mg/m²/24 giờ, ngày 1–5, hàng tuần × 5 tuần.",
+             "<b>Phác đồ capecitabin</b>: 1 chu kỳ trước + 2 chu kỳ sau (750–1000 mg/m² × 2 lần/ngày, ngày 1–14, chu kỳ 21 ngày). Trong khi xạ: 625–825 mg/m² × 2 lần/ngày, ngày 1–5, hàng tuần × 5 tuần."],
+         cav:"NCCN nêu rõ <b>không dùng nguyên liều và lịch của thử nghiệm Intergroup 0116 gốc</b> do lo ngại độc tính — dùng bản sửa đổi ở trên."}}]},
+     {label:"pT3, pT4 (N bất kỳ) hoặc bất kỳ pT có N(+)", tag:"GĐ II–III", tagc:"r",
+      note:"Lựa chọn phụ thuộc hoàn toàn vào mức nạo hạch đã thực hiện.",
+      children:[
+       {label:"Đã nạo hạch D2", tag:"D2", tagc:"t",
+        rec:{lvl:"Mức 1", title:"HOÁ TRỊ bổ trợ — không thêm xạ trị",
+         li:["<b>Capecitabin + oxaliplatin</b> (mức 1): capecitabin 1000 mg/m² × 2 lần/ngày ngày 1–14 + oxaliplatin 130 mg/m² ngày 1, <b>mỗi 21 ngày × 8 chu kỳ</b> (CLASSIC).",
+             "<b>5-FU + oxaliplatin</b>: oxaliplatin 85 + leucovorin 400 + 5-FU 400 mg/m² bolus + 5-FU 1200 mg/m²/24 giờ × 2 ngày, mỗi 14 ngày.",
+             "<b>S-1</b> 12 tháng là chuẩn mực tại châu Á (ACTS-GC) — không nằm trong bảng phác đồ của NCCN Hoa Kỳ nhưng có trong Hướng dẫn Bộ Y tế."],
+         cav:"ARTIST và ARTIST-II: thêm xạ trị sau cắt R0 có nạo hạch D2 <b>không cải thiện sống còn</b>. ESMO khuyến cáo không xạ trị hậu phẫu trong tình huống này [I, D/E]."}},
+       {label:"Nạo hạch ít hơn D2", tag:"< D2", tagc:"r",
+        rec:{lvl:"Mức 1", title:"Fluoropyrimidin → hoá xạ trị nền fluoropyrimidin → fluoropyrimidin",
+         li:["Liều xạ <b>45–50,4 Gy, 1,8 Gy mỗi buổi</b>.",
+             "5-FU: 2 chu kỳ trước + 4 chu kỳ sau; hoặc capecitabin: 1 chu kỳ trước + 2 chu kỳ sau (liều như ở nhánh pT2N0 nguy cơ cao)."],
+         cav:"Đây là lý do phiếu giải phẫu bệnh <b>phải ghi rõ số hạch lấy được</b> — con số đó quyết định bệnh nhân nhận hoá trị đơn thuần hay hoá xạ trị."}}]}]},
+
+   {label:"R1 — còn ung thư trên vi thể ở diện cắt", tag:"R1", tagc:"a",
+    rec:{lvl:"2A", lvc:"a", title:"Hoá xạ trị nền fluoropyrimidin",
+     li:["Đây là lựa chọn duy nhất NCCN liệt kê cho R1 ở bệnh nhân chưa điều trị trước mổ.",
+         "Liều xạ 45–50,4 Gy, 1,8 Gy mỗi buổi."]}},
+
+   {label:"R2 — còn u trên đại thể", tag:"R2", tagc:"r",
+    rec:{lvl:"2A", lvc:"r", title:"Hoá xạ trị nền fluoropyrimidin HOẶC điều trị giảm nhẹ",
+     li:["Hoá xạ trị nền fluoropyrimidin, nếu mục tiêu còn là kiểm soát tại chỗ.",
+         "Hoặc chuyển sang nhánh bệnh tiến xa – di căn, theo chỉ định lâm sàng.",
+         "Làm HER2, PD-L1 CPS, xét nghiệm vi vệ tinh nếu chưa có."]}},
+
+   {label:"pM1 — phát hiện di căn trên bệnh phẩm hoặc trong mổ", tag:"GĐ IV", tagc:"r",
+    rec:{lvl:"—", lvc:"r", title:"Chuyển nhánh bệnh tiến xa – di căn",
+     li:["Xem nhánh “Bệnh tiến xa – di căn: điều trị bước 1”."]}}]},
+
+ /* ---------- 3. Sau mổ, đã điều trị trước ---------- */
+ {label:"Sau phẫu thuật — ĐÃ điều trị trước mổ", tag:"GAST-5", tagc:"p",
+  note:"Tiền tố <b>yp</b> dùng cho bệnh phẩm xếp giai đoạn sau điều trị tiền phẫu.",
+  children:[
+   {label:"R0 — diện cắt sạch", tag:"R0", tagc:"t",
+    rec:{lvl:"Mức 1", title:"Hai lựa chọn, tuỳ điều trị đã nhận trước mổ",
+     li:["<b>Theo dõi</b> — nếu bệnh nhân đã nhận <b>hoá xạ trị</b> tiền phẫu.",
+         "<b>Điều trị toàn thân</b> — nếu đã nhận hoá trị trước mổ thì <b>hoàn tất phần sau mổ của phác đồ chu phẫu</b> (mức 1). Ví dụ: 4 chu kỳ FLOT còn lại.",
+         "Áp dụng kể cả khi đạt ypT0N0."],
+     cav:"NCCN không chỉ định nivolumab bổ trợ cho ung thư <b>dạ dày</b>. Nivolumab bổ trợ (CheckMate 577) thuộc nhánh ung thư <b>thực quản và EGJ</b> đã hoá xạ trị tiền phẫu."}},
+   {label:"R1 — còn vi thể", tag:"R1", tagc:"a",
+    rec:{lvl:"2A", lvc:"a", title:"Hai lựa chọn",
+     li:["<b>Hoá xạ trị nền fluoropyrimidin</b> — <i>chỉ khi chưa xạ trị trước mổ</i>.",
+         "Hoặc <b>cân nhắc cắt lại</b> (re-resection) nếu khả thi về kỹ thuật và thể trạng."],
+     cav:"Khác với ung thư thực quản (ESOPH-16), NCCN <b>không liệt kê “theo dõi”</b> như một lựa chọn cho R1 ở ung thư dạ dày đã điều trị tiền phẫu."}},
+   {label:"R2 — còn u đại thể", tag:"R2", tagc:"r",
+    rec:{lvl:"2A", lvc:"r", title:"Hoá xạ trị (chỉ khi chưa xạ) HOẶC điều trị giảm nhẹ",
+     li:["Hoá xạ trị nền fluoropyrimidin nếu chưa xạ trị trước mổ.",
+         "Hoặc chuyển nhánh bệnh tiến xa – di căn."]}},
+   {label:"ypM1 — có di căn", tag:"GĐ IV", tagc:"r",
+    rec:{lvl:"—", lvc:"r", title:"Chuyển nhánh bệnh tiến xa – di căn", li:["Xem nhánh điều trị bước 1 theo dấu ấn sinh học."]}}]},
+
+ /* ---------- 4. Di căn bước 1 ---------- */
+ {label:"Bệnh tiến xa – di căn: điều trị BƯỚC 1", tag:"GAST-F", tagc:"p",
+  note:"Nguyên tắc nền của NCCN: <b>ưu tiên phác đồ 2 thuốc</b> vì độc tính thấp hơn; phác đồ 3 thuốc chỉ dành cho bệnh nhân thể trạng rất tốt và theo dõi độc tính sát; <b>oxaliplatin được ưu tiên hơn cisplatin</b>.",
+  children:[
+   {label:"Karnofsky &lt;60% hoặc ECOG ≥3", tag:"ECOG ≥3", tagc:"r",
+    rec:{lvl:"—", lvc:"r", title:"Chăm sóc giảm nhẹ tốt nhất",
+     li:["NCCN phân nhánh dứt khoát theo toàn trạng tại GAST-9.",
+         "Trọng tâm: kiểm soát triệu chứng, dinh dưỡng, hỗ trợ tâm lý xã hội, thảo luận mục tiêu chăm sóc."]}},
+   {label:"Karnofsky ≥60% hoặc ECOG ≤2 — điều trị toàn thân", tag:"ECOG ≤2", tagc:"t",
+    note:"Đọc dấu ấn theo thứ tự: <b>MSI/MMR</b> → <b>HER2</b> → <b>PD-L1 CPS</b>.",
+    children:[
+
+     {label:"MSI-H / dMMR (không phụ thuộc PD-L1)", tag:"MSI-H", tagc:"p",
+      ev:{t:"NCCN liệt kê 5 phác đồ ƯU TIÊN ngang hàng — không xếp thứ bậc",
+       li:["Cả 5 đều nằm trong mục <b>Preferred Regimens</b> của GAST-F và đều là <b>mức 2A</b> (không phác đồ nào được gắn mức 1 trong mục MSI-H).",
+           "<b>KEYNOTE-062</b>, phân nhóm MSI-H (n=50): pembrolizumab đơn trị ORR 57,1% và trung vị sống thêm <b>chưa đạt</b>; pembrolizumab + hoá trị ORR 64,7%, trung vị <b>chưa đạt</b>; hoá trị đơn thuần ORR 36,8%, trung vị 8,5 tháng.",
+           "<b>KEYNOTE-859</b>, phân nhóm MSI-H: HR sống thêm toàn bộ <b>0,34</b> khi thêm pembrolizumab vào hoá trị.",
+           "<b>CheckMate 649</b>, phân nhóm MSI-H: HR khoảng <b>0,33</b> khi thêm nivolumab vào hoá trị.",
+           "Tất cả đều là phân nhóm nhỏ, phân tích thăm dò — <b>chưa có thử nghiệm nào so sánh trực tiếp</b> miễn dịch đơn trị với miễn dịch + hoá trị ở riêng nhóm MSI-H."]},
+      rec:{lvl:"2A", lvc:"t", title:"Năm phác đồ ưu tiên — chọn theo gánh nặng bệnh và tốc độ cần đáp ứng",
+       li:["<b>Fluoropyrimidin + oxaliplatin + PEMBROLIZUMAB</b> — pembrolizumab 200 mg mỗi 3 tuần (tối đa 2 năm) + CAPOX hoặc mFOLFOX6.",
+           "<b>Fluoropyrimidin + oxaliplatin + NIVOLUMAB</b> — nivolumab 360 mg mỗi 3 tuần với CAPOX, hoặc 240 mg mỗi 2 tuần với FOLFOX (tối đa 2 năm).",
+           "<b>Pembrolizumab đơn trị</b> — 200 mg mỗi 3 tuần hoặc 400 mg mỗi 6 tuần (tối đa 2 năm).",
+           "<b>Dostarlimab đơn trị</b> — 500 mg mỗi 3 tuần × 4 liều, sau đó 1000 mg mỗi 6 tuần.",
+           "<b>Nivolumab + ipilimumab</b> — nivolumab 1 mg/kg + ipilimumab 3 mg/kg mỗi 3 tuần × 4 chu kỳ, sau đó nivolumab 240 mg mỗi 2 tuần (tối đa 2 năm)."],
+       cav:"<b>Chọn thế nào trên thực tế:</b> bệnh nhân có <b>gánh nặng u lớn, triệu chứng nhiều, cần đáp ứng nhanh</b> hoặc có nguy cơ tiến triển sớm → ưu tiên <b>miễn dịch phối hợp hoá trị</b>, vì hoá trị bảo đảm kiểm soát bệnh trong lúc chờ miễn dịch phát huy tác dụng. Bệnh nhân <b>gánh nặng u thấp, ít triệu chứng</b> hoặc không dung nạp hoá trị → miễn dịch đơn trị là hợp lý và tránh được độc tính hoá chất. Nếu bệnh nhân MSI-H đồng thời có <b>CPS ≥5</b> (nivolumab) hoặc <b>CPS ≥10</b> (pembrolizumab), phác đồ miễn dịch + hoá trị còn được hậu thuẫn thêm bằng <b>bằng chứng mức 1</b> từ quần thể chung."}},
+
+     {label:"HER2 dương tính (IHC 3+ hoặc IHC 2+ / ISH dương)", tag:"HER2+", tagc:"p",
+      note:"Mức bộc lộ PD-L1 quyết định có thêm pembrolizumab hay không.",
+      children:[
+       {label:"PD-L1 CPS ≥ 1", tag:"CPS ≥1", tagc:"p",
+        rec:{lvl:"Mức 1", title:"Fluoropyrimidin + platin + TRASTUZUMAB + PEMBROLIZUMAB",
+         li:["NCCN xếp <b>mức 1</b> cho cả hai biến thể: với <b>oxaliplatin</b> và với <b>cisplatin</b> (KEYNOTE-811).",
+             "<b>Trastuzumab</b> 8 mg/kg liều nạp ngày 1 chu kỳ 1 → 6 mg/kg mỗi 21 ngày (hoặc 6 mg/kg nạp → 4 mg/kg mỗi 14 ngày).",
+             "<b>Pembrolizumab</b> 200 mg mỗi 3 tuần, hoặc 400 mg mỗi 6 tuần.",
+             "Oxaliplatin được ưu tiên hơn cisplatin do độc tính thấp hơn."],
+         cav:"Đo phân suất tống máu thất trái trước điều trị và mỗi 3 tháng. <b>Pertuzumab không có chỉ định</b> trong ung thư dạ dày. <b>Trastuzumab deruxtecan chỉ dùng từ bước 2</b>."}},
+       {label:"PD-L1 CPS &lt; 1", tag:"CPS <1", tagc:"t",
+        rec:{lvl:"Mức 1 / 2A", lvc:"t", title:"Fluoropyrimidin + platin + TRASTUZUMAB",
+         li:["<b>Fluoropyrimidin + cisplatin + trastuzumab — mức 1</b> (đây là phác đồ của thử nghiệm ToGA).",
+             "<b>Fluoropyrimidin + oxaliplatin + trastuzumab — mức 2A</b>, suy rộng từ y văn và thực hành; vẫn được NCCN ưu tiên vì oxaliplatin ít độc hơn cisplatin.",
+             "Trastuzumab 8 mg/kg nạp → 6 mg/kg mỗi 21 ngày."],
+         cav:"Đây là điểm dễ ghi nhầm: mức 1 gắn với <b>biến thể cisplatin</b>, không phải với oxaliplatin."}}]},
+
+     {label:"HER2 âm tính", tag:"HER2−", tagc:"t",
+      note:"Hai thuốc dùng <b>hai ngưỡng CPS khác nhau</b>: nivolumab ngưỡng 5, pembrolizumab ngưỡng 10.",
+      children:[
+       {label:"CPS ≥ 10", tag:"CPS ≥10", tagc:"p",
+        rec:{lvl:"Mức 1", title:"Hai phác đồ mức 1 — chọn theo thuốc sẵn có",
+         li:["<b>Fluoropyrimidin + oxaliplatin + NIVOLUMAB</b> — mức 1 (CheckMate 649, ngưỡng CPS ≥5). Nivolumab 360 mg mỗi 3 tuần với CAPOX, hoặc 240 mg mỗi 2 tuần với FOLFOX.",
+             "<b>Fluoropyrimidin + oxaliplatin + PEMBROLIZUMAB</b> — mức 1 ở CPS ≥10 (KEYNOTE-859). Pembrolizumab 200 mg mỗi 3 tuần.",
+             "Biến thể với <b>cisplatin</b> + pembrolizumab cũng là mức 1 ở CPS ≥10.",
+             "Thời gian dùng thuốc miễn dịch tối đa 2 năm."]}},
+       {label:"CPS 5 – 9", tag:"CPS 5–9", tagc:"t",
+        rec:{lvl:"Mức 1 / 2B", lvc:"t", title:"Nivolumab đạt ngưỡng, pembrolizumab chưa",
+         li:["<b>Fluoropyrimidin + oxaliplatin + NIVOLUMAB — mức 1</b> (đạt ngưỡng CPS ≥5).",
+             "Fluoropyrimidin + oxaliplatin (hoặc cisplatin) + pembrolizumab — <b>mức 2B</b> ở khoảng CPS 1 đến dưới 10.",
+             "Hoặc fluoropyrimidin + oxaliplatin đơn thuần (2A) nếu không tiếp cận được thuốc miễn dịch."]}},
+       {label:"CPS 1 – 4", tag:"CPS 1–4", tagc:"a",
+        rec:{lvl:"2A / 2B", lvc:"a", title:"Hoá trị là nền tảng; lợi ích thuốc miễn dịch không rõ ràng",
+         li:["<b>Fluoropyrimidin + oxaliplatin</b> hoặc <b>fluoropyrimidin + cisplatin</b> — <b>mức 2A</b>, nằm trong nhóm ưu tiên.",
+             "Thêm <b>pembrolizumab</b>: mức 2B (khoảng CPS 1 đến dưới 10).",
+             "Thêm <b>nivolumab</b>: mức 2B (CPS dưới 5) — NCCN xếp ở mục “hữu ích trong một số trường hợp”.",
+             "Cân nhắc xét nghiệm <b>CLDN18.2</b>: dương khi ≥75% tế bào u bắt màu màng cường độ 2+/3+ → zolbetuximab phối hợp CAPOX hoặc mFOLFOX6."],
+         cav:"Nên trao đổi thẳng thắn với người bệnh về mức lợi ích không chắc chắn của thuốc miễn dịch ở khoảng CPS này, nhất là khi chi phí tự chi trả."}},
+       {label:"CPS &lt; 1", tag:"CPS <1", tagc:"r",
+        rec:{lvl:"2A", lvc:"t", title:"Hoá trị hai thuốc",
+         li:["<b>Fluoropyrimidin + oxaliplatin</b> (ưu tiên) hoặc <b>fluoropyrimidin + cisplatin</b>.",
+             "Bệnh nhân yếu hoặc cao tuổi: NCCN có phác đồ liều giảm riêng — <b>capecitabin 625 mg/m² × 2 lần/ngày ngày 1–14 + oxaliplatin 85 mg/m² ngày 1, mỗi 21 ngày</b> (dựa trên thử nghiệm GO2).",
+             "Cân nhắc <b>CLDN18.2</b> → zolbetuximab nếu dương tính."],
+         cav:"<b>Pembrolizumab</b> phối hợp hoá trị chỉ được liệt kê cho CPS ≥1 nên không áp dụng ở đây. <b>Nivolumab</b> phối hợp hoá trị vẫn được NCCN liệt kê ở mức <b>2B cho CPS dưới 5</b> — tức bao gồm cả CPS dưới 1 — nhưng lợi ích rất hạn chế."}}]}]}]},
+
+ /* ---------- 5. Di căn bước 2 ---------- */
+ {label:"Bệnh tiến xa – di căn: BƯỚC 2 trở đi", tag:"GAST-F", tagc:"p",
+  note:"Lựa chọn phụ thuộc phác đồ đã dùng và toàn trạng.",
+  children:[
+   {label:"Nhóm ƯU TIÊN của NCCN", tag:"Ưu tiên", tagc:"p",
+    rec:{lvl:"Mức 1 phần lớn", title:"Bảy lựa chọn ưu tiên",
+     li:["<b>Ramucirumab + paclitaxel — mức 1</b>: ramucirumab 8 mg/kg ngày 1 và 15 + paclitaxel 80 mg/m² ngày 1, 8, 15 — chu kỳ 28 ngày (RAINBOW).",
+         "<b>Trastuzumab deruxtecan</b> cho ung thư biểu mô tuyến <b>HER2 dương tính</b>: <b>6,4 mg/kg mỗi 21 ngày</b> — lưu ý liều này <b>khác liều ung thư vú (5,4 mg/kg)</b>.",
+         "<b>Docetaxel — mức 1</b>: 75–100 mg/m² mỗi 21 ngày.",
+         "<b>Paclitaxel — mức 1</b>: 135–250 mg/m² mỗi 21 ngày, hoặc 80 mg/m² hàng tuần (chu kỳ 28 ngày).",
+         "<b>Irinotecan — mức 1</b>: 150–180 mg/m² mỗi 14 ngày; 250–350 mg/m² mỗi 21 ngày; hoặc 125 mg/m² ngày 1 và 8 mỗi 21 ngày.",
+         "<b>Fluorouracil + irinotecan</b> (FOLFIRI): irinotecan 180 + leucovorin 400 + 5-FU 400 bolus + 5-FU 1200 mg/m²/24 giờ × 2 ngày, mỗi 14 ngày.",
+         "<b>Trifluridine/tipiracil — mức 1, từ bước 3 trở đi</b>: 35 mg/m² × 2 lần/ngày (tối đa 80 mg mỗi liều), ngày 1–5 và 8–12, chu kỳ 28 ngày (TAGS)."],
+     cav:"<b>Capecitabin không thay thế được 5-FU</b> trong các phác đồ có irinotecan. Trastuzumab deruxtecan: theo dõi <b>bệnh phổi kẽ</b> — chụp CT ngực nền và đánh giá triệu chứng hô hấp mỗi chu kỳ."}},
+   {label:"Nhóm khác được khuyến cáo", tag:"2A–2B", tagc:"t",
+    rec:{lvl:"2A / 2B", lvc:"t", title:"Năm lựa chọn",
+     li:["<b>Ramucirumab đơn trị — mức 1</b>: 8 mg/kg mỗi 14 ngày (REGARD) — khi không dung nạp taxane.",
+         "<b>Irinotecan + cisplatin</b>: irinotecan 65 mg/m² + cisplatin 25–30 mg/m², ngày 1 và 8, mỗi 21 ngày.",
+         "<b>Fluorouracil + irinotecan + ramucirumab</b>: ramucirumab 8 mg/kg ngày 1 + FOLFIRI, mỗi 14 ngày.",
+         "<b>Irinotecan + ramucirumab</b>: irinotecan 150 mg/m² + ramucirumab 8 mg/kg ngày 1, mỗi 14 ngày.",
+         "<b>Docetaxel + irinotecan — mức 2B</b>: docetaxel 35 + irinotecan 50 mg/m², ngày 1 và 8, mỗi 21 ngày."],
+     cav:"Ramucirumab: theo dõi huyết áp mỗi lần truyền và protein niệu định kỳ; <b>ngừng ít nhất 4 tuần trước phẫu thuật theo kế hoạch</b> do nguy cơ chậm liền vết thương."}},
+   {label:"Hữu ích trong một số trường hợp — theo dấu ấn", tag:"Theo dấu ấn", tagc:"a",
+    rec:{lvl:"2A", lvc:"t", title:"Bảy tình huống cần NGS hoặc xét nghiệm vi vệ tinh",
+     li:["<b>MSI-H / dMMR</b> → pembrolizumab; nivolumab + ipilimumab; dostarlimab (dostarlimab chỉ dùng cho bệnh nhân <b>chưa từng</b> dùng thuốc ức chế điểm kiểm soát).",
+         "<b>TMB cao (≥10 đột biến/megabase)</b> → pembrolizumab.",
+         "<b>NTRK fusion</b> → larotrectinib 100 mg × 2 lần/ngày; entrectinib 600 mg mỗi ngày; repotrectinib (dùng khi đã kháng thuốc NTRK trước đó): 160 mg/ngày ngày 1–14 chu kỳ 1, sau đó 160 mg × 2 lần/ngày.",
+         "<b>BRAF V600E</b> → dabrafenib 150 mg × 2 lần/ngày + trametinib 2 mg mỗi ngày.",
+         "<b>RET fusion</b> → selpercatinib: ≥50 kg dùng 160 mg × 2 lần/ngày; &lt;50 kg dùng 120 mg × 2 lần/ngày."],
+     cav:"Điều kiện chung của các thuốc miễn dịch: <b>không có tiến triển trước đó trong khi đang dùng thuốc ức chế điểm kiểm soát</b>."}}]},
+
+ /* ---------- 6. Di căn phúc mạc ---------- */
+ {label:"Di căn phúc mạc là tổn thương DUY NHẤT", tag:"GAST-10", tagc:"p",
+  note:"NCCN tách riêng nhánh này, bao gồm cả trường hợp chỉ có <b>tế bào dịch rửa dương tính</b>.",
+  children:[
+   {label:"Bước đánh giá và điều trị khởi đầu", tag:"Khởi đầu", tagc:"t",
+    rec:{lvl:"2A", lvc:"t", title:"Đánh giá lại toàn diện rồi điều trị toàn thân tối thiểu 3 tháng",
+     li:["Hỏi bệnh và khám; CT ngực/bụng/chậu có cản quang uống và tĩnh mạch; cân nhắc PET/CT; xem lại giải phẫu bệnh; cân nhắc nội soi dạ dày.",
+         "<b>Nội soi ổ bụng chẩn đoán kèm rửa ổ bụng</b>, tính <b>chỉ số ung thư phúc mạc (PCI)</b>, có hoặc không sinh thiết.",
+         "Điều trị toàn thân <b>tối thiểu 3 tháng</b>, sau đó đánh giá lại."]}},
+   {label:"Đánh giá lại: PCI ≤10, bệnh ổn định hoặc cải thiện, không có bệnh ngoài phúc mạc", tag:"PCI ≤10", tagc:"t",
+    children:[
+     {label:"Dự đoán giảm khối HOÀN TOÀN được", tag:"CC-0 dự kiến", tagc:"t",
+      rec:{lvl:"2A", lvc:"t", title:"Ba lựa chọn ngang nhau",
+       li:["<b>Thử nghiệm lâm sàng</b>, hoặc",
+           "<b>Cắt dạ dày + phẫu thuật giảm khối + hoá trị trong phúc mạc / HIPEC</b>, hoặc",
+           "<b>Tiếp tục điều trị toàn thân</b>."],
+       cav:"ESMO xếp cách tiếp cận phẫu thuật này ở mức <b>[V, C]</b> — chỉ dành cho trường hợp chọn lọc rất kỹ tại trung tâm có kinh nghiệm; bệnh suất và tử vong do thủ thuật cao."}},
+     {label:"Dự đoán giảm khối KHÔNG hoàn toàn", tag:"CC-1/2/3", tagc:"a",
+      rec:{lvl:"2A", lvc:"a", title:"Hai lựa chọn",
+       li:["<b>Thử nghiệm lâm sàng</b>, hoặc <b>tiếp tục điều trị toàn thân</b>.",
+           "Không chỉ định phẫu thuật giảm khối."]}}]},
+   {label:"Đánh giá lại: PCI >10, bệnh tiến triển, hoặc có di căn ngoài phúc mạc", tag:"PCI >10", tagc:"r",
+    rec:{lvl:"2A", lvc:"r", title:"Ba lựa chọn",
+     li:["<b>Điều trị toàn thân</b> (theo bảng phác đồ bước 1 hoặc bước tiếp theo), hoặc",
+         "<b>Thử nghiệm lâm sàng</b>, hoặc",
+         "<b>Chăm sóc giảm nhẹ tốt nhất</b>."],
+     cav:"ESMO: <b>không cắt dạ dày ở bệnh di căn trừ khi cần giảm nhẹ triệu chứng [I, D]</b> — thử nghiệm REGATTA cho thấy cắt dạ dày dự phòng làm xấu đi kết quả."}}]}
+]},
+
+/* =====================================================================
+   ========================= THỰC QUẢN & EGJ ===========================
+   ===================================================================== */
+{label:"UNG THƯ THỰC QUẢN & CHỖ NỐI DẠ DÀY – THỰC QUẢN", tag:"Thực quản", tagc:"t",
+ note:"Bước phân nhánh quyết định đầu tiên là <b>mô học</b>. Bắt buộc xét nghiệm MSI/MMR cho mọi bệnh nhân mới chẩn đoán; PD-L1 khi bệnh tiến xa; <b>HER2 chỉ khi là ung thư biểu mô tuyến di căn</b>. Nội soi phế quản nếu u ở ngang hoặc trên carina. Hạch thân tạng ở u EGJ và thực quản đoạn xa <b>không phải M1</b> — vẫn cân nhắc điều trị đa mô thức.",
+ children:[
+
+ /* ---------- VẢY khu trú ---------- */
+ {label:"Biểu mô VẢY — bệnh khu trú, bệnh nhân đủ sức khoẻ phẫu thuật", tag:"ESOPH-3/4", tagc:"t",
+  children:[
+   {label:"pTis", tag:"Tis", tagc:"t",
+    rec:{lvl:"2A", lvc:"t", title:"Điều trị nội soi (ưu tiên) hoặc cắt thực quản",
+     li:["Ưu tiên: <b>cắt u qua nội soi ± đốt</b>, hoặc <b>đốt đơn thuần</b>.",
+         "Hoặc cắt thực quản — chỉ định khi ung thư tại chỗ lan rộng, đặc biệt tổn thương dạng nốt không kiểm soát được bằng đốt hoặc cắt nội soi kèm đốt.",
+         "Sau đó theo dõi nội soi định kỳ."],
+     cav:"NCCN lưu ý: với pTis và pT1a thể vảy, <b>mức bằng chứng cho việc đốt sau cắt nội soi còn thấp</b>; có thể không cần đốt nếu đã cắt trọn toàn bộ tổn thương."}},
+   {label:"pT1a", tag:"T1a", tagc:"t",
+    rec:{lvl:"2A", lvc:"t", title:"Cắt u qua nội soi ± đốt (ưu tiên), hoặc cắt thực quản",
+     li:["Cắt thực quản được chỉ định khi tổn thương lan rộng hoặc dạng nốt không kiểm soát được bằng nội soi.",
+         "Sau đó theo dõi nội soi định kỳ."]}},
+   {label:"pT1b, N0", tag:"T1b", tagc:"a",
+    rec:{lvl:"2A", lvc:"t", title:"Cắt thực quản",
+     li:["Với thể vảy, NCCN chỉ liệt kê <b>cắt thực quản</b> cho pT1bN0 (khác thể tuyến, nơi pT1b <i>nông</i> vẫn có lựa chọn nội soi).",
+         "Hoá xạ trị triệt để là lựa chọn phù hợp cho bệnh nhân từ chối phẫu thuật."]}},
+   {label:"cT1b – cT2, N0", tag:"cT1b–T2 N0", tagc:"a",
+    note:"Phân tầng nguy cơ quyết định mổ đơn thuần hay điều trị đa mô thức.",
+    children:[
+     {label:"Tổn thương nguy cơ THẤP", tag:"Nguy cơ thấp", tagc:"t",
+      risk:{t:"Tiêu chí nguy cơ thấp — NCCN ESOPH-4",
+       li:["Kích thước u <b>dưới 3 cm</b>", "Mô học <b>biệt hoá tốt</b>"]},
+      rec:{lvl:"2A", lvc:"t", title:"Cắt thực quản đơn thuần",
+       li:["Áp dụng cho <b>thực quản không phải đoạn cổ</b>.",
+           "Sau mổ xử trí theo nhánh “Sau mổ — biểu mô vảy”."]}},
+     {label:"Tổn thương nguy cơ CAO", tag:"Nguy cơ cao", tagc:"r",
+      risk:{t:"Yếu tố nguy cơ cao ở cT2N0 — NCCN ESOPH-4",
+       li:["<b>Xâm lấn mạch bạch huyết</b> (LVI)", "Kích thước u <b>từ 3 cm trở lên</b>", "Mô học <b>kém biệt hoá</b>"]},
+      rec:{lvl:"2A", lvc:"t", title:"Hoá xạ trị tiền phẫu HOẶC hoá xạ trị triệt để",
+       li:["<b>Hoá xạ trị tiền phẫu</b> rồi phẫu thuật — phác đồ ưu tiên: <b>paclitaxel 50 mg/m² + carboplatin AUC 2 hàng tuần × 5 tuần</b> (mức 1) hoặc <b>5-FU + oxaliplatin</b> (mức 1), đồng thời xạ trị <b>41,4–50,4 Gy, 1,8–2,0 Gy mỗi buổi</b>.",
+           "<b>Hoặc hoá xạ trị triệt để</b> — liều <b>50–50,4 Gy</b>.",
+           "Đánh giá lại <b>5–8 tuần</b> sau khi kết thúc: PET/CT, CT ngực–bụng, nội soi kèm sinh thiết."],
+       cav:"NCCN: bệnh nhân <b>có nguy cơ cuối cùng không mổ được</b> do bệnh kèm theo nên dùng ngay liều <b>50–50,4 Gy</b> thay vì liều tiền phẫu."}}]},
+   {label:"cT1b – cT2 có N(+), hoặc cT3 – cT4a, N bất kỳ", tag:"Tiến triển tại vùng", tagc:"r",
+    rec:{lvl:"2A", lvc:"t", title:"Hoá xạ trị tiền phẫu HOẶC hoá xạ trị triệt để",
+     li:["Hai lựa chọn được NCCN đặt ngang nhau cho thể vảy.",
+         "Hoá xạ tiền phẫu: paclitaxel + carboplatin (mức 1) hoặc 5-FU + oxaliplatin (mức 1) + xạ 41,4–50,4 Gy, rồi phẫu thuật.",
+         "Hoá xạ triệt để: 50–50,4 Gy, với theo dõi sát và cân nhắc <b>phẫu thuật cứu vãn</b> nếu còn bệnh tại chỗ.",
+         "Sau hoá xạ tiền phẫu + cắt R0 còn bệnh tồn dư → <b>nivolumab bổ trợ, mức 1</b> (xem nhánh sau mổ)."],
+     cav:"ESMO xếp hai chiến lược này ngang nhau: hoá xạ rồi phẫu thuật [I, A] hoặc hoá xạ triệt để với phẫu thuật cứu vãn [II, B]. Với <b>u thực quản đoạn cổ</b> mà phẫu thuật đòi hỏi cắt thanh quản, ESMO khuyến cáo <b>hoá xạ triệt để [III, B]</b>."}},
+   {label:"cT4b", tag:"T4b", tagc:"r",
+    rec:{lvl:"2A", lvc:"r", title:"Hoá xạ trị triệt để, hoặc hoá trị đơn thuần nếu xâm lấn cấu trúc sống còn",
+     li:["<b>Hoá xạ trị triệt để</b> 50–50,4 Gy.",
+         "Hoặc <b>cân nhắc hoá trị đơn thuần</b> khi u xâm lấn <b>khí quản, mạch máu lớn, thân đốt sống hoặc tim</b> — xạ trị trong tình huống này có nguy cơ tạo rò.",
+         "Với bệnh nhân chọn lọc, cân nhắc đặt stent nội lòng khi phù hợp."],
+     cav:"Nếu đã có <b>rò thực quản – khí phế quản</b>: chống chỉ định hoá xạ trị triệt để; xử trí bằng stent phủ, kháng sinh và nuôi dưỡng qua đường khác."}}]},
+
+ /* ---------- VẢY, không phải ứng viên phẫu thuật ---------- */
+ {label:"Biểu mô VẢY — không phải ứng viên phẫu thuật", tag:"ESOPH-8", tagc:"a",
+  note:"Gồm bệnh nhân không chịu được phẫu thuật lớn và bệnh nhân đủ sức khoẻ nhưng từ chối mổ.",
+  children:[
+   {label:"pTis hoặc pT1a", tag:"Rất sớm", tagc:"t",
+    rec:{lvl:"2A", lvc:"t", title:"Cắt u qua nội soi ± đốt (pTis có thể đốt đơn thuần)",
+     li:["Sau đó theo dõi nội soi định kỳ."]}},
+   {label:"pT1b, N0", tag:"T1b", tagc:"a",
+    rec:{lvl:"2A", lvc:"t", title:"Cắt u qua nội soi ± đốt, hoặc hoá xạ trị triệt để",
+     li:["Cân nhắc <b>hoá xạ trị triệt để</b> cho các khối u có <b>yếu tố tiên lượng xấu</b>."],
+     risk:null}},
+   {label:"cT1b – cT4a, N0 – N(+), hoặc cT4b không mổ được", tag:"Khu trú", tagc:"r",
+    children:[
+     {label:"Chịu được hoá xạ trị", tag:"Dung nạp", tagc:"t",
+      rec:{lvl:"2A", lvc:"t", title:"Hoá xạ trị triệt để",
+       li:["Liều 50–50,4 Gy, 1,8–2,0 Gy mỗi buổi.",
+           "Phác đồ ưu tiên: paclitaxel + carboplatin, hoặc 5-FU + oxaliplatin (mức 1).",
+           "Phác đồ khác: 5-FU + cisplatin (mức 1); cisplatin với docetaxel hoặc paclitaxel; irinotecan + cisplatin (2B); paclitaxel + fluoropyrimidin (2B)."]}},
+     {label:"Không chịu được hoá xạ trị", tag:"Không dung nạp", tagc:"r",
+      rec:{lvl:"2A", lvc:"r", title:"Xạ trị giảm nhẹ hoặc chăm sóc giảm nhẹ tốt nhất",
+       li:["Xạ trị giảm nhẹ để kiểm soát nuốt nghẹn và chảy máu.",
+           "Hoặc chăm sóc giảm nhẹ tốt nhất đơn thuần."]}}]}]},
+
+ /* ---------- TUYẾN khu trú ---------- */
+ {label:"Biểu mô TUYẾN — bệnh khu trú, bệnh nhân đủ sức khoẻ phẫu thuật", tag:"ESOPH-12/13", tagc:"t",
+  note:"Ghi rõ <b>phân loại Siewert</b> cho u EGJ: type I xử trí như thực quản, type III như dạ dày, type II là vùng xám.",
+  children:[
+   {label:"pTis", tag:"Tis", tagc:"t",
+    rec:{lvl:"2A", lvc:"t", title:"Điều trị nội soi (ưu tiên) hoặc cắt thực quản",
+     li:["Cắt u qua nội soi ± đốt, hoặc đốt đơn thuần.",
+         "Với thực quản Barrett: NCCN yêu cầu <b>cắt nội soi rồi đốt để loại bỏ hoàn toàn phần loạn sản hoặc biểu mô Barrett còn lại</b>.",
+         "Cắt thực quản khi tổn thương lan rộng, đặc biệt dạng nốt không kiểm soát được bằng nội soi."]}},
+   {label:"pT1a", tag:"T1a", tagc:"t",
+    rec:{lvl:"2A", lvc:"t", title:"Cắt u qua nội soi ± đốt (ưu tiên), hoặc cắt thực quản",
+     li:["Cân nhắc cắt nội soi chẩn đoán để khẳng định giai đoạn bệnh học ở bệnh nhân chọn lọc.",
+         "Sau đó theo dõi nội soi; vẫn phải đốt hết phần Barrett còn lại."]}},
+   {label:"pT1b NÔNG (superficial)", tag:"T1b nông", tagc:"a",
+    rec:{lvl:"2A", lvc:"t", title:"Cắt u qua nội soi ± đốt, HOẶC cắt thực quản",
+     li:["Đây là điểm khác biệt so với thể vảy: với thể tuyến, <b>pT1b nông vẫn còn lựa chọn nội soi</b>.",
+         "Cắt thực quản được chỉ định khi tổn thương lan rộng hoặc dạng nốt không kiểm soát được."]}},
+   {label:"pT1b, N0", tag:"T1b", tagc:"a",
+    rec:{lvl:"2A", lvc:"t", title:"Cắt thực quản",
+     li:["Hoá xạ trị triệt để là lựa chọn phù hợp cho bệnh nhân từ chối phẫu thuật."]}},
+   {label:"cT1b – cT2, N0", tag:"cT1b–T2 N0", tagc:"a",
+    children:[
+     {label:"Tổn thương nguy cơ THẤP", tag:"Nguy cơ thấp", tagc:"t",
+      risk:{t:"Tiêu chí nguy cơ thấp — NCCN ESOPH-13", li:["Kích thước u <b>dưới 3 cm</b>", "Mô học <b>biệt hoá tốt</b>"]},
+      rec:{lvl:"2A", lvc:"t", title:"Cắt thực quản đơn thuần", li:["Sau mổ xử trí theo nhánh “Sau mổ — biểu mô tuyến”."]}},
+     {label:"Tổn thương nguy cơ CAO", tag:"Nguy cơ cao", tagc:"r",
+      risk:{t:"Yếu tố nguy cơ cao ở cT2N0 — NCCN ESOPH-13",
+       li:["<b>Xâm lấn mạch bạch huyết</b> (LVI)", "Kích thước u <b>từ 3 cm trở lên</b>", "Mô học <b>kém biệt hoá</b>"]},
+      rec:{lvl:"Mức 1", title:"Hoá xạ trị tiền phẫu (ƯU TIÊN) — hoặc hoá trị chu phẫu",
+       li:["<b>Hoá xạ trị tiền phẫu cho kế hoạch cắt thực quản — mức 1, NCCN ghi rõ là lựa chọn ƯU TIÊN</b>.",
+           "Phác đồ: paclitaxel 50 mg/m² + carboplatin AUC 2 hàng tuần × 5 tuần (mức 1), hoặc 5-FU + oxaliplatin (mức 1); xạ trị 41,4–50,4 Gy.",
+           "<b>Hoặc hoá trị chu phẫu</b>: FLOT (mức 1) 4 chu kỳ trước + 4 sau mổ, hoặc fluoropyrimidin + oxaliplatin.",
+           "<b>U MSI-H/dMMR</b>: cân nhắc thuốc ức chế điểm kiểm soát miễn dịch tân bổ trợ hoặc chu phẫu, sau hội chẩn đa chuyên khoa.",
+           "<b>Hoá xạ trị triệt để</b> — chỉ dành cho bệnh nhân từ chối phẫu thuật."],
+       cav:"ESMO xếp hoá trị chu phẫu và hoá xạ trị tân bổ trợ <b>ngang nhau [I, A]</b>. Thử nghiệm ESOPEC so sánh trực tiếp FLOT với CROSS ở ung thư biểu mô tuyến cho kết quả ủng hộ FLOT — nên đưa vào thảo luận hội chẩn."}}]},
+   {label:"cT1b – cT2 có N(+), hoặc cT3 – cT4a, N bất kỳ", tag:"Tiến triển tại vùng", tagc:"r",
+    rec:{lvl:"Mức 1", title:"Hoá xạ trị tiền phẫu (ƯU TIÊN) — hoặc hoá trị chu phẫu",
+     li:["Cùng các lựa chọn như nhánh cT2N0 nguy cơ cao ở trên.",
+         "NCCN: <b>hoá xạ trị tiền phẫu là cách tiếp cận ưu tiên</b> cho ung thư biểu mô tuyến thực quản đoạn ngực và EGJ; hoá trị chu phẫu là lựa chọn thay thế cho thực quản đoạn xa và EGJ.",
+         "Đánh giá lại 5–8 tuần sau khi kết thúc điều trị tiền phẫu."],
+     cav:"NCCN khuyến cáo <b>hội chẩn đa chuyên khoa lại trước khi mổ</b> với trường hợp sau điều trị tân bổ trợ còn T4a hoặc N3 nhiều chặng hạch."}},
+   {label:"cT4b", tag:"T4b", tagc:"r",
+    rec:{lvl:"2A", lvc:"r", title:"Hoá xạ trị triệt để, hoặc hoá trị đơn thuần nếu xâm lấn cấu trúc sống còn",
+     li:["Hoá xạ trị triệt để 50–50,4 Gy.",
+         "Cân nhắc hoá trị đơn thuần khi u xâm lấn khí quản, mạch máu lớn, thân đốt sống hoặc tim.",
+         "Nếu tiến triển hoặc không kiểm soát được → chuyển nhánh bệnh tiến xa – di căn."]}}]},
+
+ /* ---------- Sau mổ, vảy ---------- */
+ {label:"Sau mổ cắt thực quản — biểu mô VẢY", tag:"ESOPH-6/7", tagc:"p",
+  children:[
+   {label:"CHƯA hoá xạ trị trước mổ", tag:"Chưa điều trị trước", tagc:"a",
+    children:[
+     {label:"R0 — bất kỳ pT, bất kỳ pN", tag:"R0", tagc:"t",
+      rec:{lvl:"2A", lvc:"t", title:"Theo dõi",
+       li:["Với thể vảy chưa điều trị trước mổ, cắt R0 ở <b>bất kỳ pT và pN</b> đều chỉ cần theo dõi — NCCN không liệt kê điều trị bổ trợ.",
+           "Theo dõi: khám mỗi 3–6 tháng trong 1–2 năm, mỗi 6–12 tháng trong năm 3–5; nong miệng nối khi có hẹp; đánh giá và tư vấn dinh dưỡng thường quy."],
+       cav:"Đây là khác biệt rõ rệt so với thể tuyến, nơi pT3/pT4a hoặc N(+) vẫn có lựa chọn hoá xạ trị hoặc hoá trị bổ trợ."}},
+     {label:"R1", tag:"R1", tagc:"a",
+      rec:{lvl:"2A", lvc:"a", title:"Hoá xạ trị nền fluoropyrimidin", li:["Liều xạ hậu phẫu 45–50,4 Gy, 1,8–2,0 Gy mỗi buổi."]}},
+     {label:"R2", tag:"R2", tagc:"r",
+      rec:{lvl:"2A", lvc:"r", title:"Hoá xạ trị nền fluoropyrimidin hoặc điều trị giảm nhẹ", li:["Theo tình huống lâm sàng."]}}]},
+   {label:"ĐÃ hoá xạ trị tiền phẫu", tag:"Đã hoá xạ", tagc:"p",
+    children:[
+     {label:"R0 — ypT0 N0", tag:"pCR", tagc:"t",
+      rec:{lvl:"2A", lvc:"t", title:"Theo dõi",
+       li:["Đạt đáp ứng hoàn toàn về mô bệnh học → theo dõi.",
+           "<b>Không</b> chỉ định nivolumab bổ trợ ở nhóm này."]}},
+     {label:"R0 — ypT dương tính và/hoặc ypN dương tính", tag:"Còn bệnh tồn dư", tagc:"r",
+      rec:{lvl:"Mức 1", title:"NIVOLUMAB bổ trợ 1 năm",
+       li:["<b>240 mg truyền tĩnh mạch mỗi 2 tuần trong 16 tuần</b>, sau đó <b>480 mg mỗi 4 tuần</b> — tổng thời gian <b>1 năm</b>.",
+           "CheckMate 577: trung vị sống thêm không bệnh tăng gần gấp đôi."],
+       cav:"Điều kiện bắt buộc: đã <b>hoá XẠ trị tiền phẫu</b> + cắt <b>R0</b> + <b>còn bệnh tồn dư</b>. Thiếu một trong ba điều kiện là không đúng chỉ định."}},
+     {label:"R1 hoặc R2", tag:"R1 / R2", tagc:"r",
+      rec:{lvl:"2A", lvc:"r", title:"Theo dõi hoặc điều trị giảm nhẹ",
+       li:["Đã xạ trị trước mổ nên không xạ lại vùng đã chiếu.",
+           "NCCN liệt kê theo dõi hoặc chuyển điều trị giảm nhẹ."]}}]}]},
+
+ /* ---------- Sau mổ, tuyến ---------- */
+ {label:"Sau mổ cắt thực quản — biểu mô TUYẾN", tag:"ESOPH-15/16", tagc:"p",
+  children:[
+   {label:"CHƯA điều trị trước mổ", tag:"Chưa điều trị trước", tagc:"a",
+    children:[
+     {label:"R0 — pTis hoặc pT1", tag:"GĐ 0–I", tagc:"t",
+      rec:{lvl:"2A", lvc:"t", title:"Theo dõi", li:["Không điều trị bổ trợ."]}},
+     {label:"R0 — pT2, N0", tag:"GĐ IB", tagc:"a",
+      children:[
+       {label:"Không có yếu tố nguy cơ cao", tag:"Nguy cơ thấp", tagc:"t",
+        rec:{lvl:"2A", lvc:"t", title:"Theo dõi", li:["Nguy cơ tái phát thấp."]}},
+       {label:"Có yếu tố nguy cơ cao (thực quản đoạn xa hoặc EGJ)", tag:"Nguy cơ cao", tagc:"a",
+        risk:{t:"Yếu tố nguy cơ cao — NCCN ESOPH-15, chú thích uu",
+         li:["Mô học <b>kém biệt hoá</b> hoặc độ mô học cao",
+             "<b>Xâm lấn mạch bạch huyết</b> (LVI)",
+             "<b>Xâm lấn thần kinh</b> (perineural invasion)",
+             "Tuổi <b>dưới 50</b>"]},
+        rec:{lvl:"2B", lvc:"a", title:"Theo dõi, HOẶC cân nhắc hoá xạ trị bổ trợ",
+         li:["NCCN xếp <b>mức 2B</b> cho hoá xạ trị ở nhóm này và chỉ dành cho <b>bệnh nhân chọn lọc</b> có ung thư biểu mô tuyến <b>thực quản đoạn xa hoặc EGJ</b> nguy cơ cao.",
+             "<b>Theo dõi đơn thuần vẫn là lựa chọn hợp lệ</b> và được liệt kê trước.",
+             "Nếu điều trị: hoá xạ trị nền fluoropyrimidin, 45–50,4 Gy."]}}]},
+     {label:"R0 — pT3 hoặc pT4a, N0", tag:"T3–T4a N0", tagc:"r",
+      rec:{lvl:"2A", lvc:"t", title:"Ba lựa chọn ngang nhau",
+       li:["<b>Theo dõi</b>, hoặc",
+           "<b>Hoá xạ trị nền fluoropyrimidin</b>, hoặc",
+           "<b>Hoá trị</b>."],
+       cav:"NCCN (chú thích vv): hoá xạ trị hậu phẫu được khuyến cáo cho bệnh nhân có <b>phẫu thuật chưa tối ưu với số hạch lấy được ít</b>, hoặc bệnh nhân bị <b>xếp giai đoạn thấp hơn thực tế</b> lúc chẩn đoán."}},
+     {label:"R0 — N(+), bất kỳ pT", tag:"N(+)", tagc:"r",
+      rec:{lvl:"2A", lvc:"t", title:"Ba lựa chọn ngang nhau",
+       li:["<b>Theo dõi</b>, hoặc <b>hoá xạ trị nền fluoropyrimidin</b>, hoặc <b>hoá trị</b>.",
+           "Quyết định dựa trên chất lượng phẫu thuật, số hạch lấy được, thể trạng và nguyện vọng người bệnh."]}},
+     {label:"R1", tag:"R1", tagc:"a",
+      rec:{lvl:"2A", lvc:"a", title:"Hoá xạ trị nền fluoropyrimidin", li:["45–50,4 Gy, 1,8–2,0 Gy mỗi buổi."]}},
+     {label:"R2", tag:"R2", tagc:"r",
+      rec:{lvl:"2A", lvc:"r", title:"Hoá xạ trị hoặc điều trị giảm nhẹ", li:["Theo tình huống lâm sàng."]}}]},
+   {label:"ĐÃ điều trị trước mổ", tag:"Đã điều trị trước", tagc:"p",
+    children:[
+     {label:"R0 — ypT0 N0", tag:"pCR", tagc:"t",
+      rec:{lvl:"Mức 1", title:"Theo dõi, HOẶC hoàn tất hoá trị chu phẫu",
+       li:["<b>Theo dõi</b>, hoặc",
+           "<b>Điều trị toàn thân nếu đã nhận hoá trị chu phẫu</b> — hoàn tất phần sau mổ (mức 1). Ví dụ 4 chu kỳ FLOT còn lại.",
+           "Không chỉ định nivolumab bổ trợ ở nhóm đạt đáp ứng hoàn toàn."]}},
+     {label:"R0 — ypT dương tính và/hoặc ypN dương tính", tag:"Còn bệnh tồn dư", tagc:"r",
+      note:"Lựa chọn phụ thuộc vào việc bệnh nhân đã nhận hoá <b>xạ</b> trị hay chỉ hoá trị chu phẫu.",
+      children:[
+       {label:"Đã nhận hoá XẠ trị tiền phẫu", tag:"Hoá xạ", tagc:"r",
+        rec:{lvl:"Mức 1", title:"NIVOLUMAB bổ trợ 1 năm, hoặc theo dõi",
+         li:["<b>Nivolumab 240 mg mỗi 2 tuần × 16 tuần → 480 mg mỗi 4 tuần, tổng 1 năm</b> — mức 1 (CheckMate 577).",
+             "Hoặc <b>theo dõi</b>, nếu bệnh nhân không phù hợp với thuốc miễn dịch."]}},
+       {label:"Chỉ nhận hoá trị chu phẫu", tag:"Hoá trị", tagc:"a",
+        rec:{lvl:"Mức 1", title:"Hoàn tất hoá trị chu phẫu, hoặc theo dõi",
+         li:["<b>Điều trị toàn thân nếu đã nhận chu phẫu</b> — hoàn tất phần sau mổ (mức 1).",
+             "Hoặc theo dõi."],
+         cav:"<b>Không</b> dùng nivolumab bổ trợ ở nhóm này — CheckMate 577 chỉ tuyển bệnh nhân đã hoá xạ trị tiền phẫu."}}]},
+     {label:"R1", tag:"R1", tagc:"a",
+      rec:{lvl:"2A", lvc:"a", title:"Ba lựa chọn",
+       li:["<b>Hoá xạ trị nền fluoropyrimidin</b> — chỉ khi <b>chưa</b> xạ trị trước mổ.",
+           "Hoặc <b>theo dõi</b>.",
+           "Hoặc <b>cân nhắc cắt lại</b>."]}},
+     {label:"R2", tag:"R2", tagc:"r",
+      rec:{lvl:"2A", lvc:"r", title:"Hoá xạ trị (chỉ khi chưa xạ) hoặc điều trị giảm nhẹ", li:["Theo tình huống lâm sàng."]}}]}]},
+
+ /* ---------- Tiến xa: vảy ---------- */
+ {label:"Bệnh tiến xa – di căn: biểu mô VẢY", tag:"ESOPH-F 5,7", tagc:"p",
+  note:"Toàn trạng là cổng đầu tiên: Karnofsky &lt;60% hoặc ECOG ≥3 → chăm sóc giảm nhẹ tốt nhất.",
+  children:[
+   {label:"BƯỚC 1", tag:"Bước 1", tagc:"t",
+    children:[
+     {label:"MSI-H / dMMR", tag:"MSI-H", tagc:"p",
+      rec:{lvl:"2A", lvc:"t", title:"Năm lựa chọn, không phụ thuộc PD-L1",
+       li:["<b>Pembrolizumab</b> đơn trị · <b>Dostarlimab</b> đơn trị · <b>Nivolumab + ipilimumab</b>.",
+           "Hoặc <b>fluoropyrimidin + oxaliplatin + nivolumab</b>, hoặc <b>+ pembrolizumab</b>.",
+           "Cách chọn giữa đơn trị và phối hợp hoá trị: như đã nêu ở nhánh ung thư dạ dày MSI-H — cân theo gánh nặng u và nhu cầu đáp ứng nhanh."]}},
+     {label:"Không phải MSI-H", tag:"MSS", tagc:"t",
+      rec:{lvl:"Mức 1", title:"Phác đồ ưu tiên cho ung thư biểu mô vảy",
+       li:["<b>Fluoropyrimidin + oxaliplatin + NIVOLUMAB — mức 1</b> (CheckMate 648), <b>không phụ thuộc ngưỡng CPS</b>.",
+           "<b>Fluoropyrimidin + cisplatin + NIVOLUMAB — mức 1</b> (phác đồ gốc của thử nghiệm).",
+           "<b>NIVOLUMAB + IPILIMUMAB</b> — không kèm hoá trị; lựa chọn cho bệnh nhân không dung nạp hoá trị.",
+           "<b>Fluoropyrimidin + cisplatin + PEMBROLIZUMAB</b> — <b>mức 1 nếu CPS ≥10</b>, mức 2B nếu CPS dưới 10 (KEYNOTE-590).",
+           "<b>Fluoropyrimidin + oxaliplatin + PEMBROLIZUMAB</b> — <b>mức 2A nếu CPS ≥10</b>, mức 2B nếu CPS dưới 10.",
+           "<b>Fluoropyrimidin + oxaliplatin</b> hoặc <b>+ cisplatin</b> đơn thuần — khi không tiếp cận được thuốc miễn dịch."],
+       cav:"Điểm dễ ghi nhầm: với pembrolizumab, <b>mức 1 chỉ gắn với biến thể cisplatin</b>; biến thể oxaliplatin là mức 2A ở cùng ngưỡng CPS ≥10."}}]},
+   {label:"BƯỚC 2 trở đi", tag:"Bước 2", tagc:"a",
+    rec:{lvl:"Mức 1 phần lớn", title:"Bảy lựa chọn ưu tiên",
+     li:["<b>Nivolumab — mức 1</b> (ATTRACTION-3).",
+         "<b>Pembrolizumab — mức 1, chỉ khi CPS ≥10</b> (KEYNOTE-181).",
+         "<b>Tislelizumab — mức 1</b>, dùng khi điều trị trước đó cho bệnh tiến xa <b>chưa</b> có thuốc ức chế điểm kiểm soát.",
+         "<b>Docetaxel — mức 1</b> · <b>Paclitaxel — mức 1</b> · <b>Irinotecan — mức 1</b>.",
+         "<b>Fluorouracil + irinotecan</b> (FOLFIRI).",
+         "Nhóm khác: irinotecan + cisplatin; docetaxel + irinotecan (mức 2B)."],
+     cav:"Theo dấu ấn: MSI-H/dMMR → pembrolizumab, nivolumab + ipilimumab, dostarlimab; TMB cao → pembrolizumab; NTRK fusion, BRAF V600E, RET fusion → thuốc đích tương ứng. Nếu đã dùng thuốc miễn dịch ở bước 1, bước 2 chuyển sang thuốc độc tế bào."}}]},
+
+ /* ---------- Tiến xa: tuyến ---------- */
+ {label:"Bệnh tiến xa – di căn: biểu mô TUYẾN", tag:"ESOPH-F 4,6", tagc:"p",
+  rec:{lvl:"—", lvc:"t", title:"Điều trị giống hệt ung thư dạ dày di căn",
+   li:["NCCN: phác đồ cho ung thư biểu mô tuyến thực quản, EGJ và dạ dày tiến xa <b>có thể dùng thay thế lẫn nhau</b>.",
+       "Xem nhánh <b>“Ung thư dạ dày → Bệnh tiến xa – di căn: điều trị bước 1”</b> và <b>“bước 2 trở đi”</b>.",
+       "Khác biệt nhỏ cần nhớ: <b>ramucirumab + paclitaxel</b> ở bước 2 là <b>mức 1 cho EGJ</b> nhưng <b>mức 2A cho thực quản</b>; <b>ramucirumab đơn trị</b> cũng vậy.",
+       "<b>Trifluridine/tipiracil</b> từ bước 3 là <b>mức 1 chỉ cho ung thư biểu mô tuyến EGJ</b>."]}}
+]}
+]};
+(function(){
+"use strict";
+var $ = function(s){ return document.querySelector(s); };
+
+/* ---------- theme ---------- */
+try{
+  var saved = localStorage.getItem('ct2-theme');
+  if(saved) document.documentElement.setAttribute('data-theme', saved);
+}catch(e){}
+$('#themeBtn').addEventListener('click', function(){
+  var cur = document.documentElement.getAttribute('data-theme');
+  var dark = cur ? cur === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var next = dark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try{ localStorage.setItem('ct2-theme', next); }catch(e){}
+});
+$('#btnPrint').addEventListener('click', function(){ window.print(); });
+
+/* ---------- state ---------- */
+var path = [];        // chỉ số đã chọn theo từng bậc
+var openAll = false;
+
+$('#btnReset').addEventListener('click', function(){ path = []; openAll = false; render(); });
+$('#btnAll').addEventListener('click', function(){
+  openAll = !openAll; path = []; render();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+});
+
+/* ---------- dựng một nút ---------- */
+function nodeEl(node, depth){
+  var wrap = document.createElement('div');
+  wrap.className = 'nodewrap';
+
+  var kids = node.children || [];
+  var hasKids = kids.length > 0;
+  var expanded = openAll || node._sel;
+
+  var b = document.createElement('button');
+  b.className = 'node' + (hasKids ? '' : ' leaf') + (node._sel ? ' sel' : '');
+  b.setAttribute('aria-expanded', hasKids ? String(!!expanded) : 'false');
+  b.innerHTML =
+    '<span class="tw" aria-hidden="true">' + (hasKids ? '▶' : '◆') + '</span>' +
+    '<span class="lbl">' + node.label + '</span>' +
+    (node.tag ? '<span class="tag tg-' + (node.tagc || 'p') + '">' + node.tag + '</span>' : '');
+  b.addEventListener('click', function(){ if(node._toggle) node._toggle(); });
+  wrap.appendChild(b);
+
+  var reveal = openAll || node._sel;
+
+  if(node.note && reveal){
+    var n = document.createElement('div');
+    n.className = 'note'; n.innerHTML = node.note;
+    wrap.appendChild(n);
+  }
+  if(node.risk && reveal){
+    var r = document.createElement('div');
+    r.className = 'box risk';
+    r.innerHTML = '<h4>⚑ ' + node.risk.t + '</h4><ul>' +
+      node.risk.li.map(function(x){ return '<li>' + x + '</li>'; }).join('') + '</ul>';
+    wrap.appendChild(r);
+  }
+  if(node.ev && reveal){
+    var e = document.createElement('div');
+    e.className = 'box ev';
+    e.innerHTML = '<h4>❖ ' + node.ev.t + '</h4><ul>' +
+      node.ev.li.map(function(x){ return '<li>' + x + '</li>'; }).join('') + '</ul>';
+    wrap.appendChild(e);
+  }
+  if(node.rec && reveal){
+    var c = document.createElement('div');
+    c.className = 'rec';
+    c.innerHTML =
+      '<span class="lv ' + (node.rec.lvc || '') + '">' + node.rec.lvl + '</span>' +
+      '<h4>' + node.rec.title + '</h4>' +
+      '<ul>' + node.rec.li.map(function(x){ return '<li>' + x + '</li>'; }).join('') + '</ul>' +
+      (node.rec.cav ? '<div class="cav"><b>Lưu ý:</b> ' + node.rec.cav + '</div>' : '');
+    wrap.appendChild(c);
+  }
+  return wrap;
+}
+
+/* ---------- dựng một bậc ---------- */
+function buildLevel(parent, depth, container){
+  var kids = parent.children || [];
+  if(!kids.length) return;
+  var box = document.createElement('div');
+  box.className = 'kids';
+  var chosen = path[depth];
+
+  kids.forEach(function(child, i){
+    var show = openAll || chosen === undefined || chosen === i;
+    if(!show) return;
+    child._sel = (chosen === i) && !openAll;
+    child._toggle = function(){
+      if(path[depth] === i && !openAll){ path = path.slice(0, depth); }
+      else { path = path.slice(0, depth); path[depth] = i; }
+      openAll = false;
+      render();
+    };
+    var el = nodeEl(child, depth);
+    box.appendChild(el);
+    if(openAll || chosen === i) buildLevel(child, depth + 1, el);
+  });
+  container.appendChild(box);
+}
+
+/* ---------- render ---------- */
+function render(){
+  $('#btnAll').textContent = openAll ? 'Thu về dạng chọn nhánh' : 'Mở toàn bộ cây';
+
+  var cb = $('#crumbs'); cb.innerHTML = '';
+  function mk(txt, fn){
+    var b = document.createElement('button');
+    b.className = 'cb'; b.textContent = txt;
+    b.addEventListener('click', fn);
+    return b;
+  }
+  cb.appendChild(mk('Gốc', function(){ path = []; openAll = false; render(); }));
+  var cur = TREE;
+  path.forEach(function(idx, d){
+    var child = (cur.children || [])[idx];
+    if(!child) return;
+    var sep = document.createElement('span');
+    sep.className = 'sep'; sep.textContent = '›';
+    cb.appendChild(sep);
+    var txt = child.tag || child.label;
+    if(txt.length > 30) txt = txt.slice(0, 29) + '…';
+    cb.appendChild(mk(txt, function(){ path = path.slice(0, d + 1); openAll = false; render(); }));
+    cur = child;
+  });
+
+  var host = $('#tree'); host.innerHTML = '';
+  var head = document.createElement('div');
+  head.className = 'rootcard';
+  head.innerHTML = '<span class="dot" aria-hidden="true"></span><span>' + TREE.label + '</span>';
+  host.appendChild(head);
+  if(TREE.note){
+    var n = document.createElement('div');
+    n.className = 'note'; n.style.marginLeft = '0'; n.style.marginTop = '10px';
+    n.innerHTML = TREE.note;
+    host.appendChild(n);
+  }
+  buildLevel(TREE, 0, host);
+}
+
+render();
+})();
+</script>
+</body>
+</html>
